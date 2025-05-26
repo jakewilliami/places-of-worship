@@ -10,16 +10,17 @@ A collector of geographical and temporal data of religious places of worship fro
 
 ## Quick Start
 
-Compile:
+Use [`just`](https://github.com/casey/just) as a convenient build tool to run different commands associated with this project:
+
 ```bash
 $ just run    # All-in-one build and run script, including updating generated const file
 $ just build  # Or build it into a binary
 ```
 
-Run:
+Alternatively, if you have a binary:
 ```bash
-$ ./places-of-worship     # TODO: command-line interface yet to be determined
-$ ./places-of-worship -h  # help command coming soon™!
+$ ./bin/places-of-worship     # TODO: command-line interface yet to be determined
+$ ./bin/places-of-worship -h  # help command coming soon™!
 ```
 
 ## Project Structure

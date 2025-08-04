@@ -2,7 +2,9 @@
 
 ![Project Status](https://img.shields.io/badge/status-in--development-yellow)
 
-> **Note**: This project is under active development and should not be considered ready for use.
+> [!NOTE]
+>
+> This project is under active development and should not be considered ready for use.
 
 A collector of geographical and temporal data of religious places of worship from various sources, published to a database.  Based on [a similar project developed by University of Auckland's Centre for e-Research](https://github.com/UoA-eResearch/religion/tree/1a4c2495ae9e059a7e2e1f4fd34cccb7b3be8995).
 

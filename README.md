@@ -4,7 +4,9 @@
 
 > [!NOTE]
 >
-> This project is under active development and should not be considered ready for use.
+> This project is still under active development, and should be considered not ready for use and stale.  We recommend using [Nick Young's implementation](https://github.com/UoA-eResearch/religion/tree/1a4c2495ae9e059a7e2e1f4fd34cccb7b3be8995), on which this project was based, or this project's [successor implemented by Joseph Bulbulia](https://github.com/go-bayes/places-of-worship/tree/d6680830e127cb5c63fb4f37db3b0740f172122b/).
+>
+> I was developing this while exploring the project space for academic interest, however, I ended up going in a different direction.  For a Go implementation closer to how I invisioned the project's structure, see [here](https://github.com/jakewilliami/terrorists).
 
 A collector of geographical and temporal data of religious places of worship from various sources, published to a database.  Based on [a similar project developed by University of Auckland's Centre for e-Research](https://github.com/UoA-eResearch/religion/tree/1a4c2495ae9e059a7e2e1f4fd34cccb7b3be8995).
 

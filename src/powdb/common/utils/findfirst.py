@@ -1,10 +1,7 @@
 from collections.abc import Callable, Iterable, Iterator, Sequence
-from typing import TypeVar
-
-T = TypeVar("T")
 
 
-def findfirst(predicate: Callable[[bool], T], x: Iterable[T]) -> int | None:
+def findfirst[T](predicate: Callable[[bool], T], x: Iterable[T]) -> int | None:
     """
     Helper method to get the index of the first element in a collection `x` that
     satisfies some condition `predicate`.

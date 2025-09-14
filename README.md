@@ -18,7 +18,7 @@ Ensure you have [UV](https://github.com/astral-sh/uv/) installed, as it affords 
 $ uv python install 3.13
 ```
 
-This project necessitates a **minimum Python version of 3.11**.  It requires Python 3.9 in the interest of [PEP 585](https://peps.python.org/pep-0585/), 3.10 in the interest of [PEP 604](https://peps.python.org/pep-0604/), and 3.11 in the interest of [performance](https://docs.python.org/3/whatsnew/3.11.html).  Ideally, run this on a newer version (e.g., 3.13) which will have even greater performance.
+This project necessitates a **minimum Python version of 3.12**.  It requires Python 3.9 in the interest of [PEP 585](https://peps.python.org/pep-0585/), 3.10 in the interest of [PEP 604](https://peps.python.org/pep-0604/), 3.11 in the interest of [performance](https://docs.python.org/3/whatsnew/3.11.html), and 3.12 for [`itertools.batched`](https://docs.python.org/3/whatsnew/3.12.html#itertools) and [improved generic type hinting](https://docs.python.org/3/whatsnew/3.12.html#pep-695-type-parameter-syntax).  Ideally, run this on a newer version (e.g., 3.13) which will have even greater performance.
 
 Now you can run the project via the command line:
 

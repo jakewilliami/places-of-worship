@@ -56,27 +56,29 @@ def test_partition():
         for a, b in zip(common.partition(xs, n), expected, strict=False):
             assert a == b
 
-    test_partition([1, 2, 3], [[1, 2], [3]], 2)
+    test_partition([1, 2, 3], [(1, 2), (3,)], 2)
 
     # Works on different collection types
     test_partition((1, 2, 3), [(1, 2), (3,)], 2)
 
     # WWorks on partition size larger than iterable
-    test_partition([1, 2, 3], [[1, 2, 3]], 10)
+    test_partition([1, 2, 3], [(1, 2, 3)], 10)
 
     # Works with range iterator defining custom __getitem__
-    test_partition(range(3), (range(0, 2), (range(2, 3))), 2)
+    test_partition(range(3), ((0, 1), (2,)), 2)
 
     # Works with empty iterable
-    test_partition([], [[]], 1)
+    test_partition([], [()], 1)
     assert len(list(common.partition([], 1))) == 0
 
     # Works for partition of size equal to iterator
-    test_partition([1], [[1]], 1)
+    test_partition([1], [(1,)], 1)
 
     # Works for other immutable sequences
-    test_partition("hello", ["he", "ll", "o"], 2)
-    test_partition(b"hello", [b"he", b"ll", b"o"], 2)
+    test_partition("hello", [("h", "e"), ("l", "l"), ("o",)], 2)
+    test_partition(
+        b"hello", [(ord("h"), ord("e")), (ord("l"), ord("l")), (ord("o"),)], 2
+    )
 
     # Works on custom class with strange behaviour
     class C(Sequence):
@@ -96,28 +98,24 @@ def test_partition():
         def __len__(self):
             return self._length
 
-    test_partition(C(3), [[69, 69], [69]], 2)
-    test_partition(C(10), [[69 for _ in range(9)], [69]], 9)
+    test_partition(C(3), [(69, 69), (69, 69)], 2)
+    test_partition(C(10), [tuple(69 for _ in range(9))], 9)
 
     # Will not work for bad partition sizes
-    with pytest.raises(ValueError, match="non-positive partition size"):
+    with pytest.raises(ValueError, match="n must be at least one"):
         list(common.partition([1, 2, 3], 0))
 
-    # Will not work for iterators because it doesn't implement __len__
-    with pytest.raises(TypeError, match="unknown length"):
-        list(common.partition((x for x in range(3)), 2))
+    # Works for iterators
+    test_partition((x for x in range(3)), [(0, 1), (2,)], 2)
 
-    # Will not work for sets because it doesn't implement __getitem__
-    with pytest.raises(TypeError, match="non-indexable or unordered object"):
-        list(common.partition({1, 2, 3}, 2))
+    # Works for non-indexable or unordered objects, using insertion order
+    test_partition({1, 2, 3}, [(1, 2), (3,)], 2)
+    test_partition({1: 2, 3: 4, 5: 6}, [(1, 3), (5,)], 2)
 
-    with pytest.raises(TypeError, match="non-indexable or unordered object"):
-        list(common.partition({1: 2, 3: 4, 5: 6}, 2))
-
-    with pytest.raises(TypeError, match="non-iterable object"):
+    with pytest.raises(TypeError, match="object is not iterable"):
         list(common.partition(123, 2))
 
-    with pytest.raises(TypeError, match="non-iterable object"):
+    with pytest.raises(TypeError, match="object is not iterable"):
         list(common.partition(None, 2))
 
 

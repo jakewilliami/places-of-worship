@@ -1,10 +1,7 @@
 from collections.abc import Iterable, Iterator, Mapping
-from typing import TypeVar
-
-T, U = TypeVar("T"), TypeVar("U")
 
 
-def in_mut(x: T, s: list[T]) -> bool:
+def in_mut[T](x: T, s: list[T]) -> bool:
     """
     If `x` is in `s`, return true.  If not, push `x` into `s` and return false.
 
@@ -24,14 +21,14 @@ def in_mut(x: T, s: list[T]) -> bool:
     return False
 
 
-def _items(x: Iterable[T]) -> Iterator[U]:
+def _items[T, U](x: Iterable[T]) -> Iterator[U]:
     if isinstance(x, Mapping):
         yield from x.items()
     else:
         yield from x
 
 
-def unique(x: Iterable[T]) -> list[T]:
+def unique[T](x: Iterable[T]) -> list[T]:
     """
     Return an array containing only the unique elements of the collection, as
     determed by their hash, in the order that the first of each set of

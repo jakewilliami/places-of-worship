@@ -2,21 +2,19 @@ from collections.abc import Container, Iterable, Iterator, Mapping
 from functools import reduce
 from itertools import chain
 from types import GenericAlias
-from typing import Any, Never, NoReturn, TypeVar, get_args, get_origin
+from typing import Any, Never, NoReturn, get_args, get_origin
 
 from .only import only
 
-T = TypeVar("T")
 
-
-def _only_or_identity(x: Iterable[T]) -> Iterable[T] | T:
+def _only_or_identity[T](x: Iterable[T]) -> Iterable[T] | T:
     try:
         return only(x)
     except ValueError:
         return x
 
 
-def _is_immutable_container(x: Container[T]) -> bool:
+def _is_immutable_container[T](x: Container[T]) -> bool:
     # TODO: expand this to be inclusive of at least stdlib.
     #
     # For now, this fits my needs, but in future might want to check against
@@ -28,7 +26,7 @@ def _type_union_t(types: Iterable[type]) -> type:
     return reduce(lambda a, b: a | b, types)
 
 
-def _type_union(x: Iterable[T]) -> type:
+def _type_union[T](x: Iterable[T]) -> type:
     # Given a collection of types, find their union type
 
     # As we need to iterate over x more than once, we must make a greedy copy
@@ -153,7 +151,7 @@ def _collection_type(ct: type, et: type) -> type:
     return ct[et]
 
 
-def _type(x: T) -> type:
+def _type[T](x: T) -> type:
     # TODO: in future, expose an interface to this function so that I can
     #   make a `typeof` method.
     if not isinstance(x, Container):
@@ -177,7 +175,7 @@ def _type(x: T) -> type:
     return _collection_type(type(x), t)
 
 
-def _eltype(x: Container[T]) -> type:
+def _eltype[T](x: Container[T]) -> type:
     if isinstance(x, Mapping):
         return _eltype_mapping(x)
 
@@ -215,7 +213,7 @@ def _eltype_t(t: type) -> type:
     return only(args) or Any
 
 
-def eltype(x: T) -> type:
+def eltype[T](x: T) -> type:
     """
     Return the element type of the given collection,
 

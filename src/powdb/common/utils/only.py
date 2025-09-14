@@ -1,14 +1,11 @@
 from collections.abc import Iterable
-from typing import TypeVar
-
-T = TypeVar("T")
 
 # https://python-patterns.guide/python/sentinel-object/
 # https://www.youtube.com/watch?v=pIRNZ5Pg5UY
 _STOP_ITERATION = object()
 
 
-def only(x: Iterable[T]) -> T:
+def only[T](x: Iterable[T]) -> T:
     """
     Helper method to return the one and only element of a collection `x`, and
     throws a `ValueError` if the collection has zero or multiple elements.

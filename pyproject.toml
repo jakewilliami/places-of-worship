@@ -1,13 +1,13 @@
 [project]
 name = "places-of-worship"  # TODO: -db at end?  Other name?
-version = "0.0.5"
+version = "0.0.6"
 description = "Pull data on places of worship from various sources"
 authors = [
     # TODO: Other authors?
     { name = "Jake W. Ireland", email = "jakewilliami@icloud.com" },
 ]
 readme = "README.md"
-requires-python = ">=3.11, <4.0.0"
+requires-python = ">=3.12, <4.0.0"
 license = "MIT"
 dependencies = [
     "osmpythontools==0.3.6",
@@ -45,7 +45,7 @@ select = [
     "I",    # isort
 ]
 ignore = [
-	"UP038",  # https://docs.astral.sh/ruff/rules/non-pep604-isinstance/
+    "UP038",  # https://docs.astral.sh/ruff/rules/non-pep604-isinstance/
 ]
 fixable = ["ALL"]
 
